@@ -22,6 +22,7 @@ export default function Home() {
       dispatch(fetchOrderDetails());
       hasFetchedData.current = true;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -107,7 +108,6 @@ export default function Home() {
         <OrderSummary />
         <PaymentDetails />
       </div>
-      
     </>
   );
 }
