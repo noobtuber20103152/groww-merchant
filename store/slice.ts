@@ -28,6 +28,7 @@ export interface OrderState {
   page: any;
   paymentMethods: any;
   selectedMethod: any;
+  paymentDone: any;
 }
 
 const initialState: OrderState = {
@@ -49,6 +50,7 @@ const initialState: OrderState = {
   page: 1,
   paymentMethods: [],
   selectedMethod: 0,
+  paymentDone: true,
 };
 
 export const orderSlice = createSlice({
@@ -109,6 +111,9 @@ export const orderSlice = createSlice({
     selectMethod: (state: any, action) => {
       state.selectedMethod = action.payload;
     },
+    setPaymentDone: (state: any, action) => {
+      state.paymentDone = action.payload;
+    },
   },
 });
 
@@ -124,5 +129,6 @@ export const {
   setLoadingData,
   setPage,
   selectMethod,
+  setPaymentDone,
 } = orderSlice.actions;
 export default orderSlice.reducer;

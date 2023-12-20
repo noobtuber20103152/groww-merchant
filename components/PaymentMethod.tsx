@@ -1,14 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
-import { selectMethod, setPage } from "@/store/slice";
+import { selectMethod, setPage, setPaymentDone } from "@/store/slice";
 import { Spinner } from "@nextui-org/react";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import getRandomBoolean from "@/lib/generateBoolean";
 function PaymentMethod() {
   const router = useRouter();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const page: any = useSelector((state: any) => {
+    state.order.page;
+  });
   const paymentMethods = useSelector(
     (state: any) => state.order.paymentMethods
   );
@@ -22,9 +26,11 @@ function PaymentMethod() {
     }
     setLoading(true);
     setTimeout(() => {
-      dispatch(setPage("3"));
       setLoading(false);
-      router.push("/confirm");
+      // router.push("/confirm");
+      dispatch(setPaymentDone(getRandomBoolean()));
+      dispatch(setPage(3));
+      
     }, 2000);
   };
   return (

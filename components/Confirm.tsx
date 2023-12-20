@@ -4,14 +4,16 @@ import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 
-function Page() {
+function Confirm() {
   const page = useSelector((state: any) => state.order.page);
-  if (page === "3") {
+  if (page === 3) {
     return (
       <>
         <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
           <a href="/">
-            <div className="text-2xl font-bold text-gray-800">Checkout Swift</div>
+            <div className="text-2xl font-bold text-gray-800">
+              Checkout Swift
+            </div>
           </a>
           <div className="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
             <div className="relative">
@@ -125,12 +127,12 @@ function Page() {
               </p>
               <p> Have a great day! </p>
               <div className="py-10 text-center">
-                <Link
+                <a
                   href="/"
                   className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3"
                 >
                   GO BACK
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -145,4 +147,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default Confirm;

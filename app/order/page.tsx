@@ -7,13 +7,16 @@ import React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PageNotFound from "@/components/PageNotFound";
 import { useSelector } from "react-redux";
+import Confirm from "@/components/Confirm";
 function Page() {
   const searchParams = useSearchParams();
-
   const id = searchParams.get("id");
   const page = useSelector((state: any) => state.order.page);
-
-  // console.log(id, page);
+  const randomBoolean = useSelector((state: any) => state.order.paymentDone);
+  if (page === 3) {
+    if (randomBoolean) return <Confirm />;
+    else return <h1>Fail</h1>;
+  }
   if (!id || page != 2) {
     return (
       <>
