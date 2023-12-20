@@ -12,6 +12,7 @@ function Page() {
 
   const id = searchParams.get("id");
   const page = useSelector((state: any) => state.order.page);
+
   // console.log(id, page);
   if (!id || page != 2) {
     return (
@@ -24,7 +25,9 @@ function Page() {
   return (
     <>
       <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-        <div className="text-2xl font-bold text-gray-800">sneekpeeks</div>
+        <Link href="/">
+          <div className="text-2xl font-bold text-gray-800">Checkout Swift</div>
+        </Link>
         <div className="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
           <div className="relative">
             <ul className="relative flex w-full items-center justify-between space-x-2 sm:space-x-4">
@@ -102,6 +105,7 @@ function Page() {
               </li>
             </ul>
           </div>
+          L
         </div>
       </div>
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">

@@ -1,17 +1,41 @@
 import React from "react";
+import { Skeleton } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 
-function Skeleton() {
+function SkeletonComponent() {
   return (
-    <div role="status" className="max-w-sm animate-pulse">
-      <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-      <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
-      <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-      <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[330px] mb-2.5"></div>
-      <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[300px] mb-2.5"></div>
-      <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
-      <span className="sr-only">Loading...</span>
-    </div>
+    <>
+      {/* <h1>Hel</h1> */}
+
+      <div className="max-full w-full flex items-center gap-3">
+        <div>
+          <Skeleton className="flex rounded-full w-12 h-12" />
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <Skeleton className="h-3 w-3/5 rounded-lg" />
+          <Skeleton className="h-3 w-4/5 rounded-lg" />
+        </div>
+      </div>
+      <div className="max-full w-full flex items-center gap-3">
+        <div>
+          <Skeleton className="flex rounded-full w-12 h-12" />
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <Skeleton className="h-3 w-3/5 rounded-lg" />
+          <Skeleton className="h-3 w-4/5 rounded-lg" />
+        </div>
+      </div>
+      <div className="max-full  w-full flex items-center gap-3">
+        <div>
+          <Skeleton className="flex rounded-full w-12 h-12" />
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <Skeleton className="h-3 w-3/5 rounded-lg" />
+          <Skeleton className="h-3 w-4/5 rounded-lg" />
+        </div>
+      </div>
+    </>
   );
 }
 
-export default Skeleton;
+export default SkeletonComponent;

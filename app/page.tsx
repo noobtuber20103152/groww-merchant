@@ -13,6 +13,8 @@ import {
   setLoadingData,
   setProductData,
 } from "@/store/slice";
+import { Skeleton } from "@nextui-org/react";
+import Link from "next/link";
 export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
   const hasFetchedData = useRef(false);
@@ -28,14 +30,16 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col items-center border-b bg-white py-4   sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-        <div className="text-2xl font-bold text-gray-800">sneekpeeks</div>
+        <Link href="/">
+          <div className="text-2xl font-bold text-gray-800">Checkout Swift</div>
+        </Link>
         <div className="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
           <div className="relative">
             <ul className="relative flex w-full items-center justify-between space-x-2 sm:space-x-4">
               <li className="flex items-center space-x-3 text-left sm:space-x-4">
                 <a
                   className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-200 text-xs font-semibold text-emerald-700"
-                  href="#"
+                  href="/"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

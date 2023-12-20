@@ -41,7 +41,7 @@ const initialState: OrderState = {
     coupanCode: "",
   },
   productData: [],
-  loadingData: false,
+  loadingData: true,
   loadingError: "",
   totalAmount: 0,
   deliveryFee: 10,
@@ -123,6 +123,6 @@ export const {
   setProductData,
   setLoadingData,
   setPage,
-  selectMethod
+  selectMethod,
 } = orderSlice.actions;
 export default orderSlice.reducer;

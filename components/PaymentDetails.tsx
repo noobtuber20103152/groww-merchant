@@ -18,9 +18,11 @@ import checkDetails from "@/lib/checkOrderDetails";
 import { coupan } from "@/lib/coupan";
 import { useRouter } from "next/navigation";
 import generateRandomId from "@/lib/randomId";
+import { Spinner } from "@nextui-org/react";
 function PaymentDetails() {
   const [loading, setLoading] = useState(false);
   const [indianState, setIndianState] = useState(indian_states);
+  const orderData = useSelector((state: any) => state.order.productData);
   const router = useRouter();
   const dispatch = useDispatch();
   const orderDetails = useSelector(
@@ -198,8 +200,9 @@ function PaymentDetails() {
         </div>
         <div className="grid md:grid-cols-2 gap-4 grid-cols-1 py-4">
           <button
+            disabled={orderData?.products?.length == 0}
             onClick={placeOrder}
-            className=" w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
+            className=" w-full rounded-md disabled: disabled:bg-gray-300 bg-gray-900 px-6 py-3 font-medium text-white"
           >
             Place Order
           </button>
@@ -221,10 +224,11 @@ function PaymentDetails() {
             </button>
           ) : (
             <button
+              disabled={orderData?.products?.length == 0}
               onClick={applyCoupan}
-              className=" w-full rounded-md bg-blue-900 px-6 py-3 font-medium text-white flex items-center justify-center"
+              className=" w-full rounded-md disabled:bg-gray-300  bg-blue-900 px-6 py-3 font-medium text-white flex items-center justify-center"
             >
-              {loading ? <Loading /> : "Apply Coupan Code"}
+              {loading ? <Spinner /> : "Apply Coupan Code"}
             </button>
           )}
         </div>

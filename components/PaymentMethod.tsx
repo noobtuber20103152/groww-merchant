@@ -1,11 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import { selectMethod } from "@/store/slice";
-import React from "react";
+import { selectMethod, setPage } from "@/store/slice";
+import { Spinner } from "@nextui-org/react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useRouter } from "next/navigation";
 function PaymentMethod() {
+  const router = useRouter();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const paymentMethods = useSelector(
     (state: any) => state.order.paymentMethods
   );
@@ -17,6 +20,12 @@ function PaymentMethod() {
       toast.error("Please choose payment method...");
       return;
     }
+    setLoading(true);
+    setTimeout(() => {
+      dispatch(setPage("3"));
+      setLoading(false);
+      router.push("/confirm");
+    }, 2000);
   };
   return (
     <>
@@ -79,12 +88,18 @@ function PaymentMethod() {
             );
           }
         })}
-        <button
-          onClick={makePayment}
-          className=" w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
-        >
-          Make Payment
-        </button>
+        {loading ? (
+          <div className="flex justify-center items-center py-3 bg-black rounded-md">
+            <Spinner />
+          </div>
+        ) : (
+          <button
+            onClick={makePayment}
+            className=" w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
+          >
+            Make Payment
+          </button>
+        )}
       </div>
     </>
   );

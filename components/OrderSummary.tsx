@@ -2,9 +2,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Skeleton from "./Skeleton";
+import SkeletonComponent from "./Skeleton";
+import Image from "next/image";
 
 function OrderSummary() {
   const orderData = useSelector((state: any) => state.order.productData);
+  // const orderData: any = [];
   const loading = useSelector((state: any) => state.order.loadingData);
   const totalAmount = useSelector((state: any) => state.order.totalAmount);
   const discount = useSelector((state: any) => state.order.discount);
@@ -21,49 +24,79 @@ function OrderSummary() {
           {loading ? (
             <Skeleton />
           ) : (
-            orderData?.products?.map((data: any) => {
-              return (
-                <>
-                  <div className="flex flex-col rounded-lg bg-white sm:flex-row">
-                    <img
-                      className=" h-20 w-20 rounded-md object-contain "
-                      src={data?.image}
-                      alt=""
-                    />
-                    <div className="flex w-full flex-col px-4 py-4">
-                      <span className="font-semibold">{data?.title}</span>
-                      <span className="float-right text-gray-400">
-                        Quantity : {data?.quantity}
-                      </span>
-                      <p className="text-lg font-medium">${data?.price}</p>
-                    </div>
-                  </div>
-                </>
-              );
-            })
+            <div>
+              {orderData?.products?.length === 0
+                ? "No items selected"
+                : orderData?.products?.map((data: any) => {
+                    return (
+                      <>
+                        <div className="flex flex-col rounded-lg bg-white mb-4 sm:flex-row">
+                          <Image
+                            width={100}
+                            height={100}
+                            className="rounded-md object-none "
+                            src={`${data?.image}`}
+                            alt="image.jpg"
+                          />
+                          <div className="flex w-full flex-col px-4 py-4">
+                            <span className="font-semibold">{data?.title}</span>
+                            <span className="float-right text-gray-400">
+                              Quantity : {data?.quantity}
+                            </span>
+                            <p className="text-lg font-medium">
+                              ${data?.price}
+                            </p>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })}
+            </div>
           )}
         </div>
-        <div className="mt-6 border px-3 py-2 rounded-lg borderpy-2">
-          <h1 className="text-2xl font-bold mb-4">Order Summary</h1>
-          <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-gray-900">Order Amount</p>
-            <p className="font-semibold text-gray-900">{totalAmount}$</p>
+
+        {loading ? (
+          <div className="mt-20 flex gap-2">
+            <SkeletonComponent />
           </div>
-          <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-gray-900">Delivery Fee</p>
-            <p className="font-semibold text-gray-900">{deliveryFee}$ </p>
+        ) : (
+          <div>
+            {orderData?.products?.length === 0 ? (
+              ""
+            ) : (
+              <div className="mt-6 border px-3 py-2 rounded-lg borderpy-2">
+                <h1 className="text-2xl font-bold mb-4">Order Summary</h1>
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium text-gray-900">
+                    Order Amount
+                  </p>
+                  <p className="font-semibold text-gray-900">{totalAmount}$</p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium text-gray-900">
+                    Delivery Fee
+                  </p>
+                  <p className="font-semibold text-gray-900">{deliveryFee}$ </p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium text-gray-900">Discount</p>
+                  <p className="font-semibold text-red-600">
+                    {discount === 0 ? "0" : `-${discount}`}$
+                  </p>
+                </div>
+                <div className="mt-6 flex items-center justify-between">
+                  <p className="text-sm font-medium text-gray-900">Total</p>
+                  <p className="text-2xl font-semibold text-gray-900">
+                    $
+                    {totalAmount + deliveryFee - discount === 0
+                      ? "0"
+                      : (totalAmount + deliveryFee - discount).toFixed(2)}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
-          <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-gray-900">Discount</p>
-            <p className="font-semibold text-red-600">-{discount}$</p>
-          </div>
-          <div className="mt-6 flex items-center justify-between">
-            <p className="text-sm font-medium text-gray-900">Total</p>
-            <p className="text-2xl font-semibold text-gray-900">
-              ${(totalAmount + deliveryFee - discount).toFixed(2)}
-            </p>
-          </div>
-        </div>
+        )}
 
         {/* <p className="mt-8 text-lg font-medium">Shipping Methods</p>
           <form className="mt-5 grid gap-6">

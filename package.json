@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.2.9",
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.2",
+    "framer-motion": "^10.16.16",
     "next": "14.0.4",
     "next-redux-wrapper": "^8.1.0",
     "nextjs-toploader": "^1.6.4",
