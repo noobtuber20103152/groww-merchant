@@ -27,10 +27,12 @@ function PaymentMethod() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      // router.push("/confirm");
-      dispatch(setPaymentDone(getRandomBoolean()));
-      dispatch(setPage(3));
-      
+      let isPaymentSuccess = getRandomBoolean();
+      if (isPaymentSuccess) {
+        dispatch(setPage(3));
+      } else {
+        toast.error("some error occured, please try again...");
+      }
     }, 2000);
   };
   return (

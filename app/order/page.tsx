@@ -8,14 +8,15 @@ import { useRouter, useSearchParams } from "next/navigation";
 import PageNotFound from "@/components/PageNotFound";
 import { useSelector } from "react-redux";
 import Confirm from "@/components/Confirm";
+import { FaChevronLeft } from "react-icons/fa";
 function Page() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const page = useSelector((state: any) => state.order.page);
   const randomBoolean = useSelector((state: any) => state.order.paymentDone);
   if (page === 3) {
-    if (randomBoolean) return <Confirm />;
-    else return <h1>Fail</h1>;
+    return <Confirm />;
   }
   if (!id || page != 2) {
     return (
@@ -24,6 +25,9 @@ function Page() {
       </>
     );
   }
+  const goToOrderDetailPage = () => {
+    router.push("/");
+  };
   console.log(id);
   return (
     <>
@@ -108,8 +112,12 @@ function Page() {
               </li>
             </ul>
           </div>
-          L
         </div>
+      </div>
+      <div className="grid mt-6 sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
+        <button onClick={goToOrderDetailPage}>
+          <FaChevronLeft className="text-xl" />
+        </button>
       </div>
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
         <OrderSummary />
