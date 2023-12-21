@@ -39,6 +39,7 @@ https://groww-merchant.vercel.app/
 
 ## Video tutorial
 
+![groww-merchant](https://github.com/noobtuber20103152/groww-merchant/assets/81584747/3c27bc65-c86d-4adc-a1db-8bf3650ea5ae)
 
 
 ## 🚀 About Me
